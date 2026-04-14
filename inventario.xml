@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="catalogo.xsl"?>
+<inventario>
+    <item>
+        <id>001</id>
+        <nombre>Teclado Mecánico Logitech G</nombre>
+        <categoria>Periféricos</categoria>
+        <estado>Buen estado</estado>
+        <propietario>Ana García</propietario>
+    </item>
+    <item>
+        <id>002</id>
+        <nombre>Monitor Dell 24"</nombre>
+        <categoria>Pantallas</categoria>
+        <estado>Con roces</estado>
+        <propietario>Carlos López</propietario>
+    </item>
+    <item>
+        <id>003</id>
+        <nombre>Cable HDMI 2.0 (2 metros)</nombre>
+        <categoria>Cables</categoria>
+        <estado>Nuevo</estado>
+        <propietario>Marta Sánchez</propietario>
+    </item>
+    <item>
+        <id>004</id>
+        <nombre>Ratón Inalámbrico HP</nombre>
+        <categoria>Periféricos</categoria>
+        <estado>Seminuevo</estado>
+        <propietario>Luis Fernández</propietario>
+    </item>
+    <item>
+        <id>005</id>
+        <nombre>Memoria RAM 8GB DDR4</nombre>
+        <categoria>Componentes</categoria>
+        <estado>Perfecto</estado>
+        <propietario>Elena Gómez</propietario>
+    </item>
+</inventario>
