@@ -26,7 +26,7 @@
                     <span class="estado"><xsl:value-of select="estado"/></span>
                     
                     <div class="qr-container">
-                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&amp;data=http://localhost/item_{id}&amp;format=svg" alt="QR del producto {id}" />
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&amp;data=http://nvanis.github.io/mercadillo/item_{id}&amp;format=svg" alt="QR del producto {id}" />
                     </div>
 
                     <div class="prop">
