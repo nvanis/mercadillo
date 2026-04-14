@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Producto</title>
+    <style>
+        body { font-family: sans-serif; display: flex; justify-content: center; padding: 20px; background: #f0f2f5; }
+        .ficha-unica { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); max-width: 400px; width: 100%; text-align: center; }
+        .id-badge { background: #34495e; color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; }
+        h1 { color: #2c3e50; margin: 15px 0; }
+        .info-row { display: flex; justify-content: space-between; margin: 10px 0; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+        .label { font-weight: bold; color: #7f8c8d; }
+        .volver { display: inline-block; margin-top: 20px; color: #3498db; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="ficha-unica" id="contenedor-ficha">
+        <p>Cargando datos del producto...</p>
+    </div>
+
+    <script>
+        // 1. Obtener el ID de la URL (ej: ficha.html?id=001)
+        const params = new URLSearchParams(window.location.search);
+        const idBuscado = params.get('id');
+
+        // 2. Cargar el XML
+        fetch('inventario.xml')
+            .then(response => response.text())
+            .then(data => {
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(data, "text/xml");
+                const items = xmlDoc.getElementsByTagName("item");
+                let encontrado = false;
+
+                for (let item of items) {
+                    let id = item.getElementsByTagName("id")[0].textContent;
+                    
+                    if (id === idBuscado) {
+                        encontrado = true;
+                        // Extraer datos
+                        let nombre = item.getElementsByTagName("nombre")[0].textContent;
+                        let cat = item.getElementsByTagName("categoria")[0].textContent;
+                        let estado = item.getElementsByTagName("estado")[0].textContent;
+                        let prop = item.getElementsByTagName("propietario")[0].textContent;
+
+                        // Inyectar en el HTML
+                        document.getElementById('contenedor-ficha').innerHTML = `
+                            <span class="id-badge">ID: ${id}</span>
+                            <h1>${nombre}</h1>
+                            <div class="info-row"><span class="label">Categoría:</span><span>${cat}</span></div>
+                            <div class="info-row"><span class="label">Estado:</span><span>${estado}</span></div>
+                            <div class="info-row"><span class="label">Vendedor:</span><span>${prop}</span></div>
+                            <a href="index.html" class="volver">← Volver al inicio</a>
+                        `;
+                        break;
+                    }
+                }
+
+                if (!encontrado) {
+                    document.getElementById('contenedor-ficha').innerHTML = "<h1>Producto no encontrado</h1>";
+                }
+            });
+    </script>
+</body>
+</html>
